@@ -33,6 +33,10 @@ a{
     max-width:1200px ;
     margin-inline: auto;
     margin-top: 16px;
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .country-card{
     display: inline-block;
