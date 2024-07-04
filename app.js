@@ -1,22 +1,26 @@
+const countriesContainer = document.querySelector('.countries-container')
 
 
-const container = document.querySelector('.countries-container')
+fetch('https://restcountries.com/v3.1/all')
+  .then((res) => res.json())
+  .then((data) => {
+    data.forEach((country) => {
+        // console.log(country);
+        const countryCard = document.createElement('a')
+        countryCard.classList.add('country-card')
+        countryCard.href = `/country.html?name=${country.name.common}`
+        countryCard.innerHTML = `
+            <img src="${country.flags.svg}" alt="flag" />
+            <div class="card-text">
+                <h3 class="card-title">${country.name.common}</h3>
+                <p><b>Population: </b>${country.population.toLocaleString('en-IN')}</p>
+                <p><b>Region: </b>${country.region}</p>
+                <p><b>Capital: </b>${country.capital?.[0]}</p>
+            </div>
+    `
+        countriesContainer.append(countryCard)
+    })
+  })
 
-const card = document.createElement('a')
-card.classList.add('country-card')
-// const imge = document.createElement('img')
-// imge.src = "https://flagcdn.com/wf.svg"
-// card.append(imge)
-
-const cardHTMl = `<img src="https://flagcdn.com/wf.svg" alt="flag">
-                <div class="card-text">
-                    <h3 class="card-title">India</h3>
-                    <p><b>Population: </b>8100000</p>
-                    <p><b>Region: </b>Asia</p>
-                    <p><b>Capital: </b>Delhi</p>
-                </div>`
-
-                card.innerHTML = cardHTMl
-                container.append(card)
                 
         
